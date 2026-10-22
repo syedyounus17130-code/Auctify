@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuctFy | Buy & Sell Through Auctions</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+    <i class="fa-solid fa-gavel"></i>
+    <span>AuctFy</span>
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+<li><a href="browse-auctions.html">Auctions</a></li>
+<li><a href="#features">About</a></li>
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+<div class="buttons">
+
+<a href="login.html" class="login">Login</a>
+
+<a href="signup.html" class="signup">Sign Up</a>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>Buy. Sell. Win.</h1>
+
+<p>
+
+AuctFy is an online auction marketplace where anyone can
+buy or sell products through exciting live auctions.
+
+Create your first auction for FREE.
+After that, unlock unlimited auctions with a monthly subscription.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="signup.html" class="btn primary">
+
+Start Selling
+
+</a>
+
+<a href="browse-auctions.html" class="btn secondary">
+
+Explore Auctions
+
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-image">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5TjguSy9CLBN6VSzLGpY4VF_fgElmR9DyaZWMZVJOCkHyxui0RQ01xLM-&s=10" alt="Auction">
+
+</div>
+
+</section>
+
+</header>
+
+<section class="features" id="features">
+
+<h2>Why Choose AuctFy?</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fa-solid fa-coins"></i>
+
+<h3>Sell Easily</h3>
+
+<p>
+
+Schedule your own auction in minutes.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-trophy"></i>
+
+<h3>Competitive Bidding</h3>
+
+<p>
+
+Buyers compete fairly with live bidding.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<h3>Secure Platform</h3>
+
+<p>
+
+Verified users and secure auction process.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<h3>Schedule Auctions</h3>
+
+<p>
+
+Choose your preferred date and time.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="how">
+
+<h2>How It Works</h2>
+
+<div class="steps">
+
+<div class="step">
+
+<h3>1</h3>
+
+<p>Create your account</p>
+
+</div>
+
+<div class="step">
+
+<h3>2</h3>
+
+<p>Create your first auction for FREE</p>
+
+</div>
+
+<div class="step">
+
+<h3>3</h3>
+
+<p>Receive bids from buyers</p>
+
+</div>
+
+<div class="step">
+
+<h3>4</h3>
+
+<p>Highest bidder wins</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="admin-entry" aria-labelledby="adminEntryTitle">
+    <div class="admin-entry-copy">
+        <p class="admin-eyebrow">Site administration</p>
+        <h2 id="adminEntryTitle">Administrator access</h2>
+        <p>Sign in to view account and auction totals.</p>
+    </div>
+    <button type="button" class="admin-toggle" id="showAdminLogin" aria-expanded="false" aria-controls="adminLoginPanel">
+        Admin Login
+    </button>
+    <form class="admin-login-panel" id="adminLoginPanel" hidden>
+        <label for="adminUsername">Username</label>
+        <input id="adminUsername" name="username" autocomplete="username" required>
+        <label for="adminPassword">Password</label>
+        <input id="adminPassword" name="password" type="password" autocomplete="current-password" required>
+        <button type="submit" class="admin-toggle">Sign in</button>
+        <p class="admin-login-status" id="adminLoginStatus" role="status" aria-live="polite"></p>
+    </form>
+</section>
+
+<footer id="contact">
+
+<p>
+
+Â© 2026 AuctFy. All Rights Reserved.
+
+</p>
+
+</footer>
+
+<script src="js/script.js"></script>
+<script src="js/admin-login.js"></script>
+
+</body>
+</html>

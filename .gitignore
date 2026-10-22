@@ -1,0 +1,14 @@
+# Local secrets and environment configuration
+server/.env
+
+# Installed dependencies
+server/node_modules/
+
+# Local database and user uploaded files
+server/database/*.db
+server/uploads/
+
+# Local editor and operating system files
+.vscode/
+.DS_Store
+Thumbs.db

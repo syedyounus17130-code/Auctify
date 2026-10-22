@@ -1,0 +1,147 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f3f5fa;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    width:1100px;
+    height:600px;
+    background:#fff;
+    display:flex;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.left{
+    flex:1;
+    background:linear-gradient(135deg,#ff9800,#ff6b00);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:60px;
+}
+
+.left h1{
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.left p{
+    line-height:28px;
+    margin-bottom:35px;
+}
+
+.left img{
+    width:100%;
+    border-radius:15px;
+}
+
+.right{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+form{
+    width:100%;
+    max-width:400px;
+}
+
+form h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.input-box{
+    display:flex;
+    align-items:center;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:14px;
+    margin-bottom:20px;
+}
+
+.input-box i{
+    color:#ff9800;
+    margin-right:10px;
+}
+
+.input-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:16px;
+}
+
+.options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+.options a{
+    color:#ff9800;
+    text-decoration:none;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    background:#ff9800;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#e68900;
+}
+
+p{
+    margin-top:20px;
+    text-align:center;
+}
+
+p a{
+    color:#ff9800;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+@media(max-width:900px){
+
+    .container{
+        flex-direction:column;
+        width:95%;
+        height:auto;
+    }
+
+    .left{
+        display:none;
+    }
+
+}
+.reset-container { max-width: 900px; }
+.reset-container .left { text-align: left; }
+.reset-container .right form > p { line-height: 1.5; }
+#resetMessage { min-height: 24px; color: #8e1d1d; }
+#resetMessage.success { color: #205c24; }

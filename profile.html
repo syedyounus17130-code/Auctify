@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile | AuctFy</title>
+
+    <link rel="stylesheet" href="css/profile.css">
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <h1>AuctFy</h1>
+
+        <ul>
+
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="create-auction.html">
+                    <i class="fa-solid fa-plus"></i>
+                    Create Auction
+                </a>
+            </li>
+
+            <li>
+                <a href="my-auctions.html">
+                    <i class="fa-solid fa-gavel"></i>
+                    My Auctions
+                </a>
+            </li>
+
+            <li>
+                <a href="subscription.html">
+                    <i class="fa-solid fa-credit-card"></i>
+                    Subscription
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="login.html" id="logoutBtn" data-logout>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <div class="profile-container">
+
+            <div class="profile-header">
+
+                <div class="profile-icon">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <div>
+
+                    <h2 id="profileName">
+                        Loading...
+                    </h2>
+
+                    <p>
+                        AuctFy Member
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Personal Information -->
+
+            <div class="profile-card">
+
+                <h3>
+                    <i class="fa-solid fa-user"></i>
+                    Personal Information
+                </h3>
+
+                <div class="info-grid">
+
+                    <div class="info-item">
+
+                        <label>Full Name</label>
+
+                        <p id="fullName">
+                            Loading...
+                        </p>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <label>Email</label>
+
+                        <p id="email">
+                            Loading...
+                        </p>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <label>Phone</label>
+
+                        <p id="phone">
+                            Loading...
+                        </p>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <label>Account Status</label>
+
+                        <p class="active-status">
+                            Active
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Auction Statistics -->
+
+            <div class="profile-card">
+
+                <h3>
+                    <i class="fa-solid fa-chart-simple"></i>
+                    Auction Statistics
+                </h3>
+
+                <div class="stats">
+
+                    <div class="stat-box">
+
+                        <i class="fa-solid fa-gavel"></i>
+
+                        <strong id="auctionCount">
+                            0
+                        </strong>
+
+                        <span>
+                            Auctions Created
+                        </span>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <i class="fa-solid fa-credit-card"></i>
+
+                        <strong id="subscriptionStatus">
+                            Checking...
+                        </strong>
+
+                        <span>
+                            Subscription
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Account Actions -->
+
+            <div class="profile-card">
+
+                <h3>
+                    <i class="fa-solid fa-gear"></i>
+                    Account
+                </h3>
+
+                <div class="account-actions">
+
+                    <button id="logoutButton" type="button" data-logout>
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        Logout
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/profile.js"></script>
+
+    <script src="js/logout.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Auctions | AuctFy</title>
+
+    <link rel="stylesheet" href="css/my-auctions.css">
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <h1>AuctFy</h1>
+
+        <ul>
+
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="create-auction.html">
+                    <i class="fa-solid fa-plus"></i>
+                    Create Auction
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="my-auctions.html">
+                    <i class="fa-solid fa-gavel"></i>
+                    My Auctions
+                </a>
+            </li>
+
+            <li>
+    <a href="subscription.html">
+        <i class="fa-solid fa-credit-card"></i>
+        Subscription
+    </a>
+</li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="login.html" id="logoutBtn" data-logout>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <div class="top-bar">
+
+            <div>
+                <h2>My Auctions</h2>
+                <p>Manage the auctions you have created.</p>
+            </div>
+
+            <a href="create-auction.html" class="create-btn">
+                <i class="fa-solid fa-plus"></i>
+                Create Auction
+            </a>
+
+        </div>
+
+
+        <!-- Auction Container -->
+
+        <div id="auctionContainer" class="auction-container">
+
+            <div class="loading">
+                Loading your auctions...
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/my-auctions.js"></script>
+
+    <script src="js/logout.js"></script>
+</body>
+
+</html>

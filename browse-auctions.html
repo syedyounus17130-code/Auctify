@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Browse Auctions | AuctFy</title>
+
+    <link rel="stylesheet" href="css/browse-auctions.css">
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <header class="topbar">
+
+        <div class="logo">
+            <i class="fa-solid fa-gavel"></i>
+            AuctFy
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="browse-auctions.html" class="active">
+                Browse Auctions
+            </a>
+
+            <a href="my-auctions.html">
+                My Auctions
+            </a>
+
+            <a href="profile.html">
+                Profile
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="page-header">
+
+            <h1>Browse Auctions</h1>
+
+            <p>
+                Discover products and participate in auctions.
+            </p>
+
+        </section>
+
+
+        <div id="auctionContainer" class="auction-grid">
+
+            <p id="loading">
+                Loading auctions...
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/browse-auctions.js"></script>
+
+    <script src="js/logout.js"></script>
+</body>
+
+</html>

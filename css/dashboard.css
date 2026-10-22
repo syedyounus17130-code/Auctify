@@ -1,0 +1,361 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ==============================
+   BODY
+============================== */
+
+body {
+    display: flex;
+    background: #f4f6fa;
+    min-height: 100vh;
+}
+
+
+/* ==============================
+   SIDEBAR
+============================== */
+
+.sidebar {
+    width: 300px;
+    height: 100vh;
+
+    background: #222;
+    color: white;
+
+    padding: 25px 20px;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    overflow-y: auto;
+}
+
+
+/* ==============================
+   LOGO
+============================== */
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 35px;
+
+    padding-left: 5px;
+}
+
+
+.logo i {
+    font-size: 30px;
+    color: #ff9800;
+
+    margin-right: 10px;
+}
+
+
+/* ==============================
+   SIDEBAR MENU
+============================== */
+
+.sidebar ul {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* Every menu item has same size */
+
+.sidebar li {
+    width: 100%;
+    height: 52px;
+
+    padding: 0;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* Links inside menu */
+
+.sidebar li a {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0 15px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 19px;
+}
+
+
+/* Icons */
+
+.sidebar li a i {
+    width: 28px;
+
+    margin-right: 10px;
+
+    text-align: center;
+}
+
+
+/* Hover */
+
+.sidebar li:hover {
+    background: #333;
+}
+
+
+/* Active menu */
+
+.sidebar li.active {
+    background: #ff9800;
+}
+
+
+/* Active hover */
+
+.sidebar li.active:hover {
+    background: #ff9800;
+}
+
+
+/* ==============================
+   MAIN CONTENT
+============================== */
+
+.main {
+    margin-left: 300px;
+
+    padding: 30px;
+
+    width: calc(100% - 300px);
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+
+/* ==============================
+   HEADER
+============================== */
+
+header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+
+header h1 {
+    font-size: 38px;
+}
+
+
+.top-icons i {
+    font-size: 22px;
+
+    margin-left: 20px;
+
+    cursor: pointer;
+}
+
+
+/* ==============================
+   DASHBOARD CARDS
+============================== */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-bottom: 35px;
+}
+
+
+.card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, .08);
+}
+
+
+.card h2 {
+    color: #ff9800;
+
+    margin-bottom: 10px;
+}
+
+
+/* ==============================
+   TABLE
+============================== */
+
+.table-box {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, .08);
+
+    overflow-x: auto;
+}
+
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 20px;
+}
+
+
+table th,
+table td {
+    padding: 15px;
+
+    border-bottom: 1px solid #ddd;
+
+    text-align: left;
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        margin-left: 0;
+
+        width: 100%;
+
+        padding: 20px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+}
+/* Interactive dashboard controls */
+.dashboard-toolbar {
+    display: flex;
+    align-items: end;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+.dashboard-toolbar label {
+    display: grid;
+    gap: 6px;
+    color: #555;
+    font-size: 14px;
+}
+.dashboard-toolbar input,
+.dashboard-toolbar select {
+    min-width: 170px;
+    padding: 10px 12px;
+    border: 1px solid #d8dce4;
+    border-radius: 8px;
+    background: #fff;
+    color: #222;
+}
+.dashboard-toolbar button {
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 8px;
+    background: #ff9800;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+.dashboard-toolbar button:disabled { opacity: .65; cursor: wait; }
+.card[role="link"] { cursor: pointer; transition: transform .18s, box-shadow .18s; }
+.card[role="link"]:hover,
+.card[role="link"]:focus-visible { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.12); outline: 2px solid #ff9800; }
+.dashboard-empty { color: #687080; text-align: center; }
+@media (max-width: 900px) {
+    .dashboard-toolbar { align-items: stretch; flex-direction: column; }
+    .dashboard-toolbar input, .dashboard-toolbar select { width: 100%; }
+}
+
+/* Dashboard notification and profile controls */
+.top-icons { position: relative; display: flex; align-items: center; gap: 14px; }
+.top-icons .icon-action {
+    position: relative; display: inline-flex; align-items: center; justify-content: center;
+    width: 42px; height: 42px; border: 0; border-radius: 50%; background: #fff;
+    color: #242424; font-size: 19px; text-decoration: none; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+.top-icons .icon-action:hover, .top-icons .icon-action:focus-visible { color: #d97706; outline: 2px solid #ff9800; }
+.notification-badge:not([hidden]) {
+    position: absolute; top: -3px; right: -3px; min-width: 18px; height: 18px;
+    padding: 0 4px; border-radius: 10px; background: #d93025; color: white;
+    font: 700 11px/18px Arial, sans-serif; text-align: center;
+}
+.notification-panel {
+    position: absolute; z-index: 10; top: 52px; right: 0; width: min(360px, calc(100vw - 40px));
+    max-height: 420px; overflow: auto; padding: 16px; border-radius: 12px;
+    background: white; box-shadow: 0 12px 36px rgba(0,0,0,.18);
+}
+.notification-panel[hidden] { display: none; }
+.notification-panel h2 { margin: 0 0 10px; font-size: 18px; }
+.notification-item { display: block; width: 100%; padding: 12px 4px; border: 0; border-top: 1px solid #eceef2; background: transparent; color: #293241; text-align: left; cursor: pointer; }
+.notification-item:hover { background: #fff7eb; }
+.notification-item small { display: block; margin-top: 5px; color: #707887; }
+.notification-panel p { color: #687080; text-align: left; }

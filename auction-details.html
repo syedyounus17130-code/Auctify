@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Auction Details | AuctFy</title>
+
+    <link rel="stylesheet" href="css/auction-details.css">
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <header class="topbar">
+
+        <div class="logo">
+            <i class="fa-solid fa-gavel"></i>
+            AuctFy
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="browse-auctions.html">
+                Browse Auctions
+            </a>
+
+            <a href="my-auctions.html">
+                My Auctions
+            </a>
+
+            <a href="profile.html">
+                Profile
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Main Content -->
+
+    <main>
+
+        <div id="loading">
+            Loading auction...
+        </div>
+
+
+        <div id="auctionDetails" class="auction-details hidden">
+
+            <!-- Left Side -->
+
+            <div class="image-section">
+
+                <img
+                    id="auctionImage"
+                    src=""
+                    alt="Auction Product"
+                >
+
+            </div>
+
+
+            <!-- Right Side -->
+
+            <div class="details-section">
+
+                <span
+                    id="auctionStatus"
+                    class="status">
+                    Loading...
+                </span>
+
+                <h1 id="productName">
+                    Auction Product
+                </h1>
+
+                <p
+                    id="category"
+                    class="category">
+                </p>
+
+
+                <div class="detail-box">
+
+                    <h3>
+                        <i class="fa-solid fa-tag"></i>
+                        Starting Price
+                    </h3>
+
+                    <p id="startingPrice">
+                        â‚¹0
+                    </p>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <h3>
+                        <i class="fa-solid fa-arrow-up"></i>
+                        Minimum Bid Increment
+                    </h3>
+
+                    <p id="minIncrement">
+                        â‚¹0
+                    </p>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <h3>
+                        <i class="fa-solid fa-align-left"></i>
+                        Description
+                    </h3>
+
+                    <p id="description">
+                    </p>
+
+                </div>
+
+
+                <div class="date-grid">
+
+                    <div class="detail-box">
+
+                        <h3>
+                            <i class="fa-solid fa-calendar"></i>
+                            Starts
+                        </h3>
+
+                        <p id="startDate">
+                        </p>
+
+                    </div>
+
+                    <div class="detail-box">
+
+                        <h3>
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Ends
+                        </h3>
+
+                        <p id="endDate">
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="seller-box">
+
+                    <h3>
+                        <i class="fa-solid fa-user"></i>
+                        Seller
+                    </h3>
+
+                    <p id="sellerName">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+                <!-- Bidding Area -->
+
+                <div class="bid-box">
+
+    <h2>
+        <i class="fa-solid fa-gavel"></i>
+        Place Your Bid
+    </h2>
+
+    <!-- Current Highest Bid -->
+
+    <div class="current-bid">
+
+        <span>
+            Current Highest Bid
+        </span>
+
+        <strong id="currentBid">
+            â‚¹0
+        </strong>
+
+    </div>
+
+
+    <!-- Minimum Next Bid -->
+
+    <p id="minimumBidText">
+        Minimum bid: â‚¹0
+    </p>
+
+
+    <!-- Bid Form -->
+
+    <div class="bid-form">
+
+        <input
+            type="number"
+            id="bidAmount"
+            placeholder="Enter your bid amount"
+            min="0"
+            step="1"
+        >
+
+        <button
+            type="button"
+            id="bidButton" disabled>
+
+            <i class="fa-solid fa-gavel"></i>
+
+            Place Bid
+
+        </button>
+
+    </div>
+
+
+    <p id="bidMessage"></p>
+
+</div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- ======================================
+     Bid History
+====================================== -->
+
+<div class="bid-history">
+
+    <h2>
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        Bid History
+    </h2>
+
+    <div id="bidHistory">
+
+        <p class="no-bids">
+            No bids yet.
+        </p>
+
+    </div>
+
+</div>
+<!-- ======================================
+     Auction Winner
+====================================== -->
+
+<div
+    class="winner-box"
+    id="winnerBox"
+    style="display: none;"
+>
+
+    <h2>
+        <i class="fa-solid fa-trophy"></i>
+        Auction Winner
+    </h2>
+
+    <p>
+        ðŸ† Winner:
+        <strong id="winnerName"></strong>
+    </p>
+
+    <p>
+        Winning Bid:
+        <strong id="winningBid"></strong>
+    </p>
+
+</div>
+
+    </main>
+
+
+    <script src="js/auction-details.js"></script>
+
+    <script src="js/logout.js"></script>
+</body>
+
+</html>

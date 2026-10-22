@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Auction | AuctFy</title>
+
+    <link rel="stylesheet" href="css/create-auction.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1><i class="fa-solid fa-gavel"></i> Create Auction</h1>
+        <p>Fill in the details below to schedule your auction.</p>
+    </div>
+
+    <form id="auctionForm" enctype="multipart/form-data">
+
+        <div class="section">
+
+            <h2>Product Information</h2>
+
+            <div class="input-group">
+                <label>Product Name</label>
+                <input type="text" id="productName" placeholder="Enter product name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Category</label>
+
+                <select id="category" required>
+
+                    <option value="">Select Category</option>
+
+                    <option>Electronics</option>
+                    <option>Mobiles</option>
+                    <option>Laptops</option>
+                    <option>Vehicles</option>
+                    <option>Furniture</option>
+                    <option>Fashion</option>
+                    <option>Collectibles</option>
+                    <option>Books</option>
+                    <option>Others</option>
+
+                </select>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Description</label>
+
+                <textarea
+                    id="description"
+                    rows="5"
+                    placeholder="Describe your product..."
+                    required></textarea>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Upload Product Image</label>
+
+                <input
+                 type="file"
+                 id="images"
+                 name="images"
+                 accept="image/*"
+                 multiple>
+            <div id="imagePreview"></div>
+            </div>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Pricing</h2>
+
+            <div class="row">
+
+                <div class="input-group">
+
+                    <label>Starting Price</label>
+
+                    <input
+                        type="number"
+                        id="startingPrice"
+                        placeholder="$100"
+                        required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Minimum Bid Increment</label>
+
+                    <input
+                        type="number"
+                        id="increment"
+                        placeholder="$10"
+                        required>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Auction Schedule</h2>
+
+            <div class="row">
+
+                <div class="input-group">
+
+                    <label>Start Date</label>
+
+                    <input
+                        type="date"
+                        id="startDate"
+                        required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Start Time</label>
+
+                    <input
+                        type="time"
+                        id="startTime"
+                        required>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="input-group">
+
+                    <label>End Date</label>
+
+                    <input
+                        type="date"
+                        id="endDate"
+                        required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>End Time</label>
+
+                    <input
+                        type="time"
+                        id="endTime"
+                        required>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button type="submit" class="submit-btn">
+            Schedule Auction
+        </button>
+
+    </form>
+
+</div>
+
+<script src="js/create-auction.js"></script>
+
+    <script src="js/logout.js"></script>
+</body>
+</html>

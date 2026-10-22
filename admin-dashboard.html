@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | AuctFy</title>
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <main class="admin-shell">
+        <header class="admin-header">
+            <div>
+                <a class="brand" href="index.html"><i class="fa-solid fa-gavel" aria-hidden="true"></i> AuctFy</a>
+                <p>Administrator dashboard</p>
+            </div>
+            <button class="logout-button" type="button" id="adminLogout"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Log out</button>
+        </header>
+
+        <section class="welcome-row">
+            <div><p class="eyebrow">Overview</p><h1>Platform activity</h1></div>
+            <button type="button" class="refresh-button" id="refreshDashboard"><i class="fa-solid fa-rotate" aria-hidden="true"></i> Refresh</button>
+        </section>
+
+        <section class="stats-grid" aria-label="Platform totals">
+            <article class="stat-card"><span class="stat-icon users-icon"><i class="fa-solid fa-users" aria-hidden="true"></i></span><div><p>Registered users</p><strong id="totalUsers">—</strong></div></article>
+            <article class="stat-card"><span class="stat-icon subscriptions-icon"><i class="fa-solid fa-crown" aria-hidden="true"></i></span><div><p>Active subscriptions</p><strong id="activeSubscriptions">—</strong></div></article>
+            <a class="stat-card stat-link" href="browse-auctions.html" aria-label="Browse all auctions"><span class="stat-icon auctions-icon"><i class="fa-solid fa-gavel" aria-hidden="true"></i></span><div><p>Total auctions placed</p><strong id="totalAuctions">—</strong></div></a>
+            <a class="stat-card stat-link" href="browse-auctions.html?status=ended" aria-label="Browse completed auctions"><span class="stat-icon completed-icon"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span><div><p>Completed auctions</p><strong id="completedAuctions">—</strong></div></a>
+            <a class="stat-card stat-link" href="browse-auctions.html?status=scheduled" aria-label="Browse scheduled auctions"><span class="stat-icon scheduled-icon"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></span><div><p>Scheduled auctions</p><strong id="scheduledAuctions">—</strong></div></a>
+        </section>
+
+        <section class="users-section">
+            <div class="section-heading"><div><p class="eyebrow">Accounts</p><h2>Registered users</h2></div><span id="usersCount" class="users-count"></span></div>
+            <p id="dashboardStatus" class="dashboard-status" role="status" aria-live="polite">Loading dashboard data…</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>User ID</th><th>Name</th><th>Subscription</th><th>Registered</th></tr></thead>
+                    <tbody id="usersTableBody"></tbody>
+                </table>
+            </div>
+            <p class="list-note">Showing up to 200 most recently registered accounts.</p>
+        </section>
+    </main>
+    <script src="js/admin-dashboard.js"></script>
+</body>
+</html>

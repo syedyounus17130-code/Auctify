@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Subscription | AuctFy</title>
+
+    <link rel="stylesheet" href="css/subscription.css">
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <h1>AuctFy</h1>
+
+        <ul>
+
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="create-auction.html">
+                    <i class="fa-solid fa-plus"></i>
+                    Create Auction
+                </a>
+            </li>
+
+            <li>
+                <a href="my-auctions.html">
+                    <i class="fa-solid fa-gavel"></i>
+                    My Auctions
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="subscription.html">
+                    <i class="fa-solid fa-credit-card"></i>
+                    Subscription
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="login.html" id="logoutBtn" data-logout>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <div class="heading">
+
+            <h2>Choose Your Plan</h2>
+
+            <p>
+                Create and manage auctions with AuctFy.
+            </p>
+
+        </div>
+
+
+        <!-- Free Plan -->
+
+        <div class="plans">
+
+            <div class="plan-card">
+
+                <div class="plan-icon">
+                    <i class="fa-solid fa-gift"></i>
+                </div>
+
+                <h3>First Auction</h3>
+
+                <div class="price">
+                    INR 0
+                    <span> / first auction</span>
+                </div>
+
+                <p class="plan-description">
+                    Create your first auction completely free.
+                </p>
+
+                <ul>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        1 Free Auction
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        List Products
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Receive Bids
+                    </li>
+
+                </ul>
+
+                <button class="disabled-btn" disabled>
+                    First Auction Free
+                </button>
+
+
+            </div>
+
+
+            <!-- Monthly Plan -->
+
+            <div class="plan-card featured">
+
+                <div class="popular">
+                    Recommended
+                </div>
+
+                <div class="plan-icon">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+
+                <h3>Monthly Seller</h3>
+
+                <div class="price">
+                    INR 499
+                    <span> / month</span>
+                </div>
+
+                <p class="plan-description">
+                    Continue creating auctions after your free auction.
+                </p>
+
+                <ul>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Unlimited Auctions
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Receive Bids
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Manage Auctions
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Monthly Subscription
+                    </li>
+
+                </ul>
+
+                <div class="terms-box">
+                    <h4>Terms and Conditions</h4>
+                    <ul>
+                        <li>The Monthly Seller plan costs INR 499 for 30 days.</li>
+                        <li>This is a one-time payment and does not renew automatically.</li>
+                        <li>Plan access starts after Razorpay confirms payment and AuctFy activates it.</li>
+                        <li>You are responsible for accurate, lawful auction listings and activity.</li>
+                        <li>Payment is processed securely by Razorpay. Contact AuctFy support for payment or subscription issues.</li>
+                    </ul>
+                    <label class="terms-consent">
+                        <input type="checkbox" id="termsAccepted" required>
+                        <span>I have read and agree to these Terms and Conditions.</span>
+                    </label>
+                </div>
+
+                <button
+                    class="subscribe-btn"
+                    id="subscribeBtn">
+
+                    Subscribe Now
+
+                </button>
+                <button type="button" class="upi-qr-btn" id="upiQrButton">
+                    <i class="fa-solid fa-qrcode"></i> Pay by UPI QR (any UPI app)
+                </button>
+                <div id="upiQrPanel" class="upi-qr-panel" hidden>
+                    <p>Scan this one-time QR with any UPI app. Keep this page open while payment is confirmed.</p>
+                    <img id="upiQrImage" alt="One-time Razorpay UPI payment QR code">
+                    <p id="upiQrStatus" role="status" aria-live="polite"></p>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- Current Subscription -->
+
+        <div
+            id="subscriptionStatus"
+            class="subscription-status">
+
+            Checking subscription...
+
+        </div>
+
+    </main>
+
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="js/subscription.js"></script>
+
+    <script src="js/logout.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | AuctFy</title>
+
+<link rel="stylesheet" href="css/dashboard.css">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-gavel"></i>
+        <h2>AuctFy</h2>
+    </div>
+
+    <ul>
+
+    <li class="active">
+        <a href="dashboard.html">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+        </a>
+    </li>
+
+    <li>
+        <a href="create-auction.html">
+            <i class="fa-solid fa-gavel"></i>
+            Create Auction
+        </a>
+    </li>
+
+    <li>
+        <a href="my-auctions.html">
+            <i class="fa-solid fa-gavel"></i>
+            My Auctions
+        </a>
+    </li>
+
+    <li>
+        <a href="my-bids.html">
+            <i class="fa-solid fa-gavel"></i>
+            My Bids
+        </a>
+    </li>
+
+    <li>
+        <a href="browse-auctions.html">
+            <i class="fa-solid fa-gavel"></i>
+            Browse Auctions
+        </a>
+    </li>
+
+    <li>
+        <a href="subscription.html">
+            <i class="fa-solid fa-credit-card"></i>
+            Subscription
+        </a>
+    </li>
+
+    <li>
+        <a href="profile.html">
+            <i class="fa-solid fa-user"></i>
+            Profile
+        </a>
+    </li>
+
+    <li>
+        <a href="login.html" id="logout" data-logout>
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+    </li>
+
+</ul>
+</div>
+
+<div class="main">
+
+<header>
+
+<h1 id="welcomeText">Welcome Back ðŸ‘‹</h1>
+
+<div class="top-icons">
+    <button type="button" class="icon-action" id="notificationsButton" aria-label="Notifications" aria-expanded="false" aria-controls="notificationPanel">
+        <i class="fa-regular fa-bell"></i><span class="notification-badge" id="notificationBadge" hidden></span>
+    </button>
+    <a class="icon-action" href="profile.html" aria-label="Open profile"><i class="fa-regular fa-user"></i></a>
+    <section class="notification-panel" id="notificationPanel" aria-label="Notifications" hidden>
+        <h2>Notifications</h2>
+        <div id="notificationList"><p>Loading notifications...</p></div>
+    </section>
+</div>
+
+</header>
+
+<section class="cards">
+
+<div class="card">
+
+<h2>12</h2>
+
+<p>My Auctions</p>
+
+</div>
+
+<div class="card">
+
+<h2>4</h2>
+
+<p>Live Auctions</p>
+
+</div>
+
+<div class="card">
+
+<h2>31</h2>
+
+<p>My Bids</p>
+
+</div>
+
+<div class="card">
+
+<h2>Premium</h2>
+
+<p>Subscription</p>
+
+</div>
+
+</section>
+
+<section class="recent">
+
+<div class="table-box">
+
+<h2>Recent Auctions</h2>
+
+<table>
+
+<tr>
+
+<th>Product</th>
+
+<th>Status</th>
+
+<th>Highest Bid</th>
+
+</tr>
+
+<tr>
+
+<td>iPhone 15</td>
+
+<td>Live</td>
+
+<td>$850</td>
+
+</tr>
+
+<tr>
+
+<td>Gaming Laptop</td>
+
+<td>Upcoming</td>
+
+<td>$1,200</td>
+
+</tr>
+
+<tr>
+
+<td>Canon Camera</td>
+
+<td>Ended</td>
+
+<td>$640</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+</div>
+<script src="js/dashboard.js"></script>
+
+    <script src="js/logout.js"></script>
+</body>
+
+</html>
