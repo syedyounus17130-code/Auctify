@@ -1,0 +1,184 @@
+body.has-app-sidebar {
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding-left: 270px !important;
+}
+
+body.has-app-sidebar .app-sidebar {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 270px;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 24px 18px;
+    background: #222;
+    color: #fff;
+}
+
+body.has-app-sidebar .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin: 0 0 30px 5px;
+    color: #fff;
+    font-size: 23px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+body.has-app-sidebar .sidebar-brand i {
+    color: #ff9800;
+    font-size: 27px;
+}
+
+body.has-app-sidebar .app-sidebar nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body.has-app-sidebar .app-sidebar nav li {
+    flex: 0 0 auto;
+    min-height: 50px;
+    margin: 0;
+    padding: 0;
+    border-radius: 9px;
+    transition: background .2s ease;
+}
+
+body.has-app-sidebar .app-sidebar nav li:hover,
+body.has-app-sidebar .app-sidebar nav li.active {
+    background: #ff9800;
+}
+
+body.has-app-sidebar .app-sidebar nav li a {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+    min-height: 50px;
+    padding: 0 13px;
+    color: #e8e8e8;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+body.has-app-sidebar .app-sidebar nav li a:hover,
+body.has-app-sidebar .app-sidebar nav li.active a {
+    color: #fff;
+}
+
+body.has-app-sidebar .app-sidebar nav li a i {
+    width: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+body.has-app-sidebar > .main {
+    width: auto !important;
+    min-width: 0;
+    margin-left: 0 !important;
+}
+
+/* Keep the dashboard content at its original 300px sidebar offset and width. */
+body.has-app-sidebar.dashboard-page > .main {
+    width: calc(100% - 30px) !important;
+    margin-left: 30px !important;
+}
+
+body.has-app-sidebar > .main-content {
+    width: auto !important;
+    min-width: 0;
+    margin-left: 0 !important;
+}
+
+body.has-app-sidebar > main:not(.admin-shell) {
+    width: auto;
+    max-width: none;
+    margin: 0;
+}
+
+body.has-app-sidebar > .container {
+    width: calc(100% - 60px);
+    margin: 40px auto;
+}
+
+body.has-app-sidebar .create-layout {
+    display: block;
+    min-height: 0;
+}
+
+body.has-app-sidebar .create-main {
+    min-height: 100vh;
+    margin-left: 0;
+    padding: 32px;
+}
+
+body.has-app-sidebar .create-main .container {
+    margin: 0 auto;
+}
+
+body.has-app-sidebar .topbar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    body.has-app-sidebar {
+        padding: 116px 0 0 !important;
+    }
+
+    body.has-app-sidebar .app-sidebar {
+        width: 100%;
+        height: 116px;
+        padding: 12px 14px;
+    }
+
+    body.has-app-sidebar .sidebar-brand {
+        gap: 9px;
+        margin: 0 0 10px 4px;
+        font-size: 20px;
+    }
+
+    body.has-app-sidebar .sidebar-brand i {
+        font-size: 22px;
+    }
+
+    body.has-app-sidebar .app-sidebar nav ul {
+        flex-direction: row;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 3px;
+    }
+
+    body.has-app-sidebar .app-sidebar nav li,
+    body.has-app-sidebar .app-sidebar nav li a {
+        min-height: 40px;
+    }
+
+    body.has-app-sidebar .app-sidebar nav li a {
+        gap: 8px;
+        padding: 0 11px;
+        font-size: 13px;
+    }
+
+    body.has-app-sidebar > .container {
+        width: calc(100% - 32px);
+        margin: 20px auto;
+    }
+
+    body.has-app-sidebar.dashboard-page > .main {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    body.has-app-sidebar .create-main {
+        padding: 20px 14px;
+    }
+}

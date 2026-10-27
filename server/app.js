@@ -184,57 +184,44 @@ const upload = multer({
 });
 app.use("/uploads", express.static(uploadPath));
 
-// Sign Up API
+// Signup creates the account immediately; email verification is not required.
 app.post("/signup", async (req, res) => {
+    const body = req.body || {};
+    const fullName = String(body.full_name || "").trim();
+    const email = String(body.email || "").trim().toLowerCase();
+    const phone = String(body.phone || "").trim();
+    const password = String(body.password || "");
 
-    const { full_name, email, phone, password } = req.body;
-
-    if (!full_name || !email || !phone || !password) {
-        return res.status(400).json({
-            success: false,
-            message: "Please fill all fields."
-        });
+    if (body.terms_accepted !== true) {
+        return res.status(400).json({ success: false, message: "Please accept the Terms & Conditions to continue." });
+    }
+    if (fullName.length < 2 || fullName.length > 100 || !/^\S+@\S+\.\S+$/.test(email)
+        || phone.length < 5 || phone.length > 30 || password.length < 8 || Buffer.byteLength(password, "utf8") > 72) {
+        return res.status(400).json({ success: false, message: "Enter a valid name, email, phone number, and password (8 to 72 bytes)." });
     }
 
     try {
-
         const hashedPassword = await bcrypt.hash(password, 10);
-
         db.run(
-            `INSERT INTO users (full_name, email, phone, password)
-             VALUES (?, ?, ?, ?)`,
-            [full_name, email, phone, hashedPassword],
-
-            function(err){
-
-                if(err){
-
-                    return res.status(400).json({
-                        success:false,
-                        message:"Email already exists."
-                    });
-
+            "INSERT INTO users (full_name, email, phone, password) VALUES (?, ?, ?, ?)",
+            [fullName, email, phone, hashedPassword],
+            function (error) {
+                if (error) {
+                    if (String(error.message).includes("UNIQUE constraint failed: users.email")) {
+                        return res.status(409).json({ success: false, message: "An account with this email already exists. Please log in." });
+                    }
+                    console.error("Signup error:", error.message);
+                    return res.status(500).json({ success: false, message: "Unable to create your account right now." });
                 }
-
-                res.json({
-                    success:true,
-                    message:"Account created successfully!"
-                });
-
+                return res.status(201).json({ success: true, message: "Account created successfully! You can now log in." });
             }
-
         );
-
-    } catch(error){
-
-        res.status(500).json({
-            success:false,
-            message:"Server Error"
-        });
-
+    } catch (error) {
+        console.error("Signup error:", error.message);
+        return res.status(500).json({ success: false, message: "Unable to create your account right now." });
     }
-
 });
+
 // Password reset by email (Resend)
 app.post("/forgot-password", async (req, res) => {
     const email = String(req.body.email || "").trim().toLowerCase();
@@ -329,7 +316,7 @@ app.post("/login", (req, res) => {
     }
 
     db.get(
-        "SELECT * FROM users WHERE email = ?",
+        "SELECT * FROM users WHERE lower(email) = lower(?)",
         [email],
         async (err, user) => {
 
@@ -1655,6 +1642,7 @@ setInterval(
     updateAuctionStatuses,
     30 * 1000
 );
+
 // Start Server
 app.listen(PORT, () => {
     console.log(`🚀 Server is running at http://localhost:${PORT}`);

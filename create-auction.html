@@ -7,11 +7,30 @@
     <title>Create Auction | AuctFy</title>
 
     <link rel="stylesheet" href="css/create-auction.css">
+    <link rel="stylesheet" href="css/app-sidebar.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
 
+<div class="create-layout">
+<aside class="app-sidebar" aria-label="Main navigation">
+    <a class="sidebar-brand" href="dashboard.html"><i class="fa-solid fa-gavel" aria-hidden="true"></i><span>AuctFy</span></a>
+    <nav>
+        <ul>
+            <li><a href="dashboard.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Dashboard</span></a></li>
+            <li class="active"><a href="create-auction.html" aria-current="page"><i class="fa-solid fa-circle-plus" aria-hidden="true"></i><span>Create Auction</span></a></li>
+            <li><a href="my-auctions.html"><i class="fa-solid fa-gavel" aria-hidden="true"></i><span>My Auctions</span></a></li>
+            <li><a href="my-bids.html"><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i><span>My Bids</span></a></li>
+            <li><a href="browse-auctions.html"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span>Browse Auctions</span></a></li>
+            <li><a href="subscription.html"><i class="fa-solid fa-credit-card" aria-hidden="true"></i><span>Subscription</span></a></li>
+            <li><a href="profile.html"><i class="fa-solid fa-user" aria-hidden="true"></i><span>Profile</span></a></li>
+            <li><a href="login.html" data-logout><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i><span>Logout</span></a></li>
+        </ul>
+    </nav>
+</aside>
+
+<main class="create-main">
 <div class="container">
 
     <div class="header">
@@ -177,8 +196,11 @@
     </form>
 
 </div>
+</main>
+</div>
 
 <script src="js/create-auction.js"></script>
+<script src="js/app-sidebar.js"></script>
 
     <script src="js/logout.js"></script>
 </body>

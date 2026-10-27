@@ -10,6 +10,7 @@
 <title>Dashboard | AuctFy</title>
 
 <link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/app-sidebar.css">
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
 
@@ -92,10 +93,10 @@
 <h1 id="welcomeText">Welcome Back ðŸ‘‹</h1>
 
 <div class="top-icons">
-    <button type="button" class="icon-action" id="notificationsButton" aria-label="Notifications" aria-expanded="false" aria-controls="notificationPanel">
+    <button type="button" class="icon-action notification-action" id="notificationsButton" aria-label="Notifications" title="Notifications" aria-expanded="false" aria-controls="notificationPanel">
         <i class="fa-regular fa-bell"></i><span class="notification-badge" id="notificationBadge" hidden></span>
     </button>
-    <a class="icon-action" href="profile.html" aria-label="Open profile"><i class="fa-regular fa-user"></i></a>
+    <a class="icon-action profile-action" href="profile.html" aria-label="Open profile" title="Profile"><i class="fa-solid fa-user"></i></a>
     <section class="notification-panel" id="notificationPanel" aria-label="Notifications" hidden>
         <h2>Notifications</h2>
         <div id="notificationList"><p>Loading notifications...</p></div>
@@ -196,6 +197,7 @@
 
 </div>
 <script src="js/dashboard.js"></script>
+<script src="js/app-sidebar.js"></script>
 
     <script src="js/logout.js"></script>
 </body>

@@ -42,99 +42,44 @@ Upgrade later for unlimited auctions.
 <div class="right">
 
 <form id="signupForm">
+    <h2>Create your account</h2>
 
-<h2>Sign Up</h2>
+    <div id="signupDetails">
+        <div class="input-box">
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
+            <input type="text" id="name" placeholder="Full Name" autocomplete="name" maxlength="100" required>
+        </div>
 
-<div class="input-box">
+        <div class="input-box">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <input type="email" id="email" placeholder="Email address" autocomplete="email" required>
+        </div>
 
-<i class="fa-solid fa-user"></i>
+        <div class="input-box">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <input type="tel" id="phone" placeholder="Phone Number" autocomplete="tel" maxlength="30" required>
+        </div>
 
-<input
-type="text"
-id="name"
-placeholder="Full Name"
-required>
+        <div class="input-box">
+            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+            <input type="password" id="password" placeholder="Password (at least 8 characters)" autocomplete="new-password" minlength="8" maxlength="72" required>
+        </div>
 
-</div>
+        <div class="input-box">
+            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" minlength="8" maxlength="72" required>
+        </div>
 
-<div class="input-box">
+        <div class="terms">
+            <input type="checkbox" id="termsAccepted" required>
+            <label for="termsAccepted">I agree to the Terms &amp; Conditions</label>
+        </div>
 
-<i class="fa-solid fa-envelope"></i>
+        <button type="submit" id="signupSubmit">Create Account</button>
+    </div>
 
-<input
-type="email"
-id="email"
-placeholder="Email"
-required>
-
-</div>
-
-<div class="input-box">
-
-<i class="fa-solid fa-phone"></i>
-
-<input
-type="tel"
-id="phone"
-placeholder="Phone Number"
-required>
-
-</div>
-
-<div class="input-box">
-
-<i class="fa-solid fa-lock"></i>
-
-<input
-type="password"
-id="password"
-placeholder="Password"
-required>
-
-</div>
-
-<div class="input-box">
-
-<i class="fa-solid fa-lock"></i>
-
-<input
-type="password"
-id="confirmPassword"
-placeholder="Confirm Password"
-required>
-
-</div>
-
-<div class="terms">
-
-<input type="checkbox" required>
-
-<label>
-
-I agree to the Terms & Conditions
-
-</label>
-
-</div>
-
-<button type="submit">
-
-Create Account
-
-</button>
-
-<p>
-
-Already have an account?
-
-<a href="login.html">
-
-Login
-
-</a>
-
-</p>
-
+    <p id="signupStatus" class="signup-status" role="status" aria-live="polite"></p>
+    <p class="account-prompt">Already have an account? <a href="login.html">Log in</a></p>
 </form>
 
 </div>

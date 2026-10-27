@@ -183,6 +183,21 @@ background:#e68900;
 
 }
 
+button:disabled{
+    opacity:.65;
+    cursor:wait;
+}
+
+.signup-status{
+    min-height:20px;
+    margin:15px 0 0;
+    color:#b42318;
+    font-size:13px;
+    line-height:1.45;
+}
+.signup-status.success{color:#18794e}
+.account-prompt{margin-top:15px}
+
 p{
 
 margin-top:20px;
