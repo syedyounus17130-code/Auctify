@@ -17,11 +17,19 @@ const db = require("./database/database");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-// Razorpay
-const razorpay = new Razorpay({
+// Payments are optional for auction bidding. Create the Razorpay client only
+// when both credentials are configured, and let payment routes report a clear error otherwise.
+const razorpayConfigured = Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET);
+const razorpay = razorpayConfigured ? new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
     key_secret: process.env.RAZORPAY_KEY_SECRET
-});
+}) : null;
+
+function requireRazorpay(res) {
+    if (razorpay) return true;
+    res.status(503).json({ success: false, message: "Razorpay is not configured on this server. Subscription payments are unavailable." });
+    return false;
+}
 
 // Middleware
 app.use(cors());
@@ -1413,6 +1421,7 @@ app.post("/create-subscription-qr", async (req, res) => {
     const { user_id, terms_accepted } = req.body;
     if (!user_id) return res.status(400).json({ success: false, message: "User ID is required." });
     if (terms_accepted !== true) return res.status(400).json({ success: false, message: "Accept the Terms and Conditions before paying." });
+    if (!requireRazorpay(res)) return;
     try {
         const qr = await razorpay.qrCode.create({
             type: "upi_qr", name: "AuctFy Monthly Seller", usage: "single_use",
@@ -1432,6 +1441,7 @@ app.post("/create-subscription-qr", async (req, res) => {
 app.post("/subscription-qr-status", async (req, res) => {
     const { user_id, qr_id } = req.body;
     if (!user_id || !qr_id) return res.status(400).json({ success: false, message: "User and QR details are required." });
+    if (!requireRazorpay(res)) return;
     try {
         const qr = await razorpay.qrCode.fetch(qr_id);
         if (String(qr.notes?.user_id) !== String(user_id) || qr.payment_amount !== 49900 || qr.type !== "upi_qr") {
@@ -1476,6 +1486,7 @@ app.post("/verify-subscription-payment", async (req, res) => {
     if (!user_id || !razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
         return res.status(400).json({ success: false, message: "Payment details are incomplete." });
     }
+    if (!requireRazorpay(res)) return;
 
     try {
         // Load order details from Razorpay so the client cannot substitute another order.
