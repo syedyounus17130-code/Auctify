@@ -154,12 +154,10 @@ app.get("/", (req, res) => {
 // ==============================
 
 // Path where uploaded images will be stored
-const uploadPath = path.join(__dirname, "uploads");
+const uploadPath = path.join(process.env.DATA_DIR || __dirname, "uploads");
 
 // Create uploads folder if it doesn't exist
-if (!fs.existsSync(uploadPath)) {
-    fs.mkdirSync(uploadPath);
-}
+fs.mkdirSync(uploadPath, { recursive: true });
 
 // Configure storage
 const storage = multer.diskStorage({
@@ -381,8 +379,15 @@ app.post("/create-auction", upload.array("images", 5), (req, res) => {
         start_date,
         start_time,
         end_date,
-        end_time
+        end_time,
+        time_zone = "UTC"
     } = req.body;
+
+    try {
+        new Intl.DateTimeFormat("en", { timeZone: time_zone }).format(new Date());
+    } catch {
+        return res.status(400).json({ success: false, message: "A valid auction timezone is required." });
+    }
 
 
     // ==============================
@@ -522,9 +527,10 @@ app.post("/create-auction", upload.array("images", 5), (req, res) => {
                         start_time,
                         end_date,
                         end_time,
+                        time_zone,
                         image
                     )
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?)`,
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`,
 
                     [
                         user_id,
@@ -537,6 +543,7 @@ app.post("/create-auction", upload.array("images", 5), (req, res) => {
                         start_time,
                         end_date,
                         end_time,
+                        time_zone,
                         imageNames
                     ],
 
@@ -1123,6 +1130,7 @@ app.get("/auctions", (req, res) => {
             start_time,
             end_date,
             end_time,
+            time_zone,
             image,
             status,
             created_at
@@ -1548,95 +1556,37 @@ app.post("/verify-subscription-payment", async (req, res) => {
 // ======================================
 
 function updateAuctionStatuses() {
-
-    const now = new Date();
-
-    const currentDate =
-        now.toISOString().split("T")[0];
-
-    const currentTime =
-        now.toTimeString().slice(0, 5);
-
-
-    // ======================================
-    // Scheduled → Active
-    // ======================================
-
-    db.run(
-        `UPDATE auctions
-         SET status = 'Active'
-         WHERE status = 'Scheduled'
-         AND (
-             start_date < ?
-             OR (
-                 start_date = ?
-                 AND start_time <= ?
-             )
-         )
-         AND (
-             end_date > ?
-             OR (
-                 end_date = ?
-                 AND end_time > ?
-             )
-         )`,
-        [
-            currentDate,
-            currentDate,
-            currentTime,
-            currentDate,
-            currentDate,
-            currentTime
-        ],
-        function(err) {
-
-            if (err) {
-
-                console.error(
-                    "Error activating auctions:",
-                    err
-                );
-
-            }
-
+    db.all("SELECT id, start_date, start_time, end_date, end_time, time_zone FROM auctions WHERE status IN ('Scheduled', 'Active', 'Ended')", (err, auctions) => {
+        if (err) {
+            console.error("Error checking auction statuses:", err);
+            return;
         }
-    );
 
-
-    // ======================================
-    // Active → Ended
-    // ======================================
-
-    db.run(
-        `UPDATE auctions
-         SET status = 'Ended'
-         WHERE status = 'Active'
-         AND (
-             end_date < ?
-             OR (
-                 end_date = ?
-                 AND end_time <= ?
-             )
-         )`,
-        [
-            currentDate,
-            currentDate,
-            currentTime
-        ],
-        function(err) {
-
-            if (err) {
-
-                console.error(
-                    "Error ending auctions:",
-                    err
-                );
-
+        for (const auction of auctions) {
+            let parts;
+            try {
+                parts = new Intl.DateTimeFormat("en-CA", {
+                    timeZone: auction.time_zone || "UTC", year: "numeric", month: "2-digit", day: "2-digit",
+                    hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+                }).formatToParts(new Date());
+            } catch {
+                parts = new Intl.DateTimeFormat("en-CA", {
+                    timeZone: "UTC", year: "numeric", month: "2-digit", day: "2-digit",
+                    hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+                }).formatToParts(new Date());
             }
-
+            const part = type => parts.find(item => item.type === type)?.value || "00";
+            const now = `${part("year")}-${part("month")}-${part("day")} ${part("hour")}:${part("minute")}`;
+            const starts = `${auction.start_date} ${auction.start_time}`;
+            const ends = `${auction.end_date} ${auction.end_time}`;
+            const nextStatus = now < starts ? "Scheduled" : now < ends ? "Active" : "Ended";
+            if (auction.status !== nextStatus) {
+                db.run("UPDATE auctions SET status = ? WHERE id = ?", [nextStatus, auction.id], updateErr => {
+                    if (updateErr) console.error(`Error updating auction ${auction.id} status:`, updateErr);
+                });
+            }
         }
-    );
-
+    });
 }
 
 

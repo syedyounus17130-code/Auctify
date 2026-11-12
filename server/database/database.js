@@ -1,7 +1,10 @@
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
+const fs = require("fs");
 
-const dbPath = path.join(__dirname, "auctfy.db");
+const dataDir = process.env.DATA_DIR || __dirname;
+fs.mkdirSync(dataDir, { recursive: true });
+const dbPath = path.join(dataDir, "auctfy.db");
 const db = new sqlite3.Database(dbPath, error => {
     if (error) console.error("Database connection failed:", error.message);
     else console.log("Connected to SQLite database");
@@ -31,6 +34,7 @@ db.serialize(() => {
         start_time TEXT NOT NULL,
         end_date TEXT NOT NULL,
         end_time TEXT NOT NULL,
+        time_zone TEXT NOT NULL DEFAULT 'UTC',
         image TEXT,
         status TEXT DEFAULT 'Scheduled',
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -73,6 +77,13 @@ db.serialize(() => {
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY(user_id) REFERENCES users(id)
     )`);
+
+    // Add timezone support to databases created before auction scheduling stored it.
+    db.run("ALTER TABLE auctions ADD COLUMN time_zone TEXT NOT NULL DEFAULT 'UTC'", error => {
+        if (error && !error.message.includes("duplicate column name")) {
+            console.error("Unable to add auction timezone column:", error.message);
+        }
+    });
 
 });
 
