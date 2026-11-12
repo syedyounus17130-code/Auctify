@@ -62,6 +62,19 @@ if (!auctionId) {
 
 }
 
+// Keep the current price and bid history fresh while people watch an auction.
+// The API is polled every few seconds so bidders see one another's bids live.
+let refreshingBids = false;
+setInterval(async () => {
+    if (!auction || refreshingBids || auction.status !== "Active") return;
+    refreshingBids = true;
+    try {
+        await Promise.all([loadHighestBid(), loadBidHistory()]);
+    } finally {
+        refreshingBids = false;
+    }
+}, 3000);
+
 
 // ======================================
 // Load Auction
@@ -168,6 +181,7 @@ async function loadAuction() {
         // ======================================
 
         await loadHighestBid();
+        await loadBidHistory();
 
 
         // ======================================

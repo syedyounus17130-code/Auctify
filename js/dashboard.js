@@ -29,6 +29,7 @@ if (!user) {
     const notificationBadge = document.getElementById("notificationBadge");
     const notificationPanel = document.getElementById("notificationPanel");
     const notificationList = document.getElementById("notificationList");
+    const upcomingAuctionList = document.getElementById("upcomingAuctionList");
     const seenKey = `auctfy_seen_notifications_${user.id}`;
     const state = { auctions: [], bids: [], subscription: null, notifications: [] };
     const currency = value => `INR ${Number(value || 0).toLocaleString("en-IN")}`;
@@ -119,10 +120,44 @@ if (!user) {
             row.append(product, status, bid); body.append(row);
         });
     }
+    function renderUpcomingAuctions(auctions) {
+        upcomingAuctionList.replaceChildren();
+        const upcoming = auctions
+            .filter(auction => String(auction.status || "").toLowerCase() === "scheduled")
+            .sort((a, b) => `${a.start_date} ${a.start_time}`.localeCompare(`${b.start_date} ${b.start_time}`));
+        if (!upcoming.length) {
+            const empty = document.createElement("p");
+            empty.textContent = "There are no upcoming auctions right now.";
+            upcomingAuctionList.append(empty);
+            return;
+        }
+        upcoming.forEach(auction => {
+            const card = document.createElement("a");
+            card.className = "upcoming-auction-card";
+            card.href = `auction-details.html?id=${encodeURIComponent(auction.id)}`;
+            const title = document.createElement("h3");
+            title.textContent = auction.product_name || "Auction";
+            const schedule = document.createElement("p");
+            try {
+                const [year, month, day] = auction.start_date.split("-").map(Number);
+                const [hour, minute] = auction.start_time.split(":").map(Number);
+                const startsAt = new Date(Date.UTC(year, month - 1, day, hour, minute));
+                schedule.textContent = new Intl.DateTimeFormat(undefined, {
+                    dateStyle: "medium", timeStyle: "short", timeZone: "UTC"
+                }).format(startsAt) + (auction.time_zone ? ` (${auction.time_zone})` : "");
+            } catch {
+                schedule.textContent = `${auction.start_date} ${auction.start_time}`;
+            }
+            const price = document.createElement("p");
+            price.textContent = `Starting bid: ${currency(auction.starting_price)}`;
+            card.append(title, schedule, price);
+            upcomingAuctionList.append(card);
+        });
+    }
     async function loadDashboard() {
         const refresh = toolbar.querySelector("#refreshDashboard"); refresh.disabled = true; refresh.textContent = "Loading...";
         try {
-            const paths = [`/my-auctions/${encodeURIComponent(user.id)}`, `/my-bids/${encodeURIComponent(user.id)}`, `/subscription/${encodeURIComponent(user.id)}`];
+            const paths = [`/my-auctions/${encodeURIComponent(user.id)}`, `/my-bids/${encodeURIComponent(user.id)}`, `/subscription/${encodeURIComponent(user.id)}`, "/auctions"];
             const responses = await Promise.all(paths.map(path => fetch(apiUrl(path))));
             const results = await Promise.all(responses.map(response => response.json()));
             const failed = responses.findIndex((response, index) => !response.ok || !results[index].success);
@@ -135,6 +170,7 @@ if (!user) {
                 } catch { return { ...auction, highest_bid: auction.starting_price }; }
             }));
             state.bids = results[1].bids || []; state.subscription = results[2].subscription;
+            renderUpcomingAuctions(results[3].auctions || []);
             cards[0].querySelector("h2").textContent = state.auctions.length;
             cards[1].querySelector("h2").textContent = state.auctions.filter(auction => auction.status === "Active").length;
             cards[2].querySelector("h2").textContent = state.bids.length;
@@ -144,6 +180,10 @@ if (!user) {
             console.error("Dashboard load error:", error);
             body.replaceChildren(); const row = document.createElement("tr"); const cell = document.createElement("td"); cell.colSpan = 3;
             cell.textContent = `${error.message || "Unable to load dashboard data."} Use Refresh to try again.`; row.append(cell); body.append(row);
+            upcomingAuctionList.replaceChildren();
+            const upcomingError = document.createElement("p");
+            upcomingError.textContent = error.message || "Unable to load upcoming auctions.";
+            upcomingAuctionList.append(upcomingError);
         } finally { refresh.disabled = false; refresh.textContent = "Refresh"; }
     }
     cards.forEach((card, index) => {

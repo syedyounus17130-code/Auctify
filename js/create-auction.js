@@ -79,6 +79,23 @@ async function checkAuctionEligibility() {
 
 const form = document.getElementById("auctionForm");
 
+// Use explicit 12-hour controls so users can choose AM or PM on every browser.
+["start", "end"].forEach(prefix => {
+    const hour = document.getElementById(`${prefix}Hour`);
+    const minute = document.getElementById(`${prefix}Minute`);
+    hour.innerHTML = '<option value="">Hour</option>' + Array.from({ length: 12 }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join("");
+    minute.innerHTML = '<option value="">Minute</option>' + Array.from({ length: 60 }, (_, i) => `<option value="${String(i).padStart(2, "0")}">${String(i).padStart(2, "0")}</option>`).join("");
+});
+
+function to24Hour(prefix) {
+    const hour = Number(document.getElementById(`${prefix}Hour`).value);
+    const minute = document.getElementById(`${prefix}Minute`).value;
+    const period = document.getElementById(`${prefix}Period`).value;
+    if (!hour || minute === "") return "";
+    const hour24 = (hour % 12) + (period === "PM" ? 12 : 0);
+    return `${String(hour24).padStart(2, "0")}:${minute}`;
+}
+
 
 form.addEventListener("submit", async function (e) {
 
@@ -149,7 +166,7 @@ form.addEventListener("submit", async function (e) {
 
     formData.append(
         "start_time",
-        document.getElementById("startTime").value
+        to24Hour("start")
     );
 
     formData.append(
@@ -159,8 +176,10 @@ form.addEventListener("submit", async function (e) {
 
     formData.append(
         "end_time",
-        document.getElementById("endTime").value
+        to24Hour("end")
     );
+
+    formData.append("time_zone", Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC");
 
 
     // ==================================

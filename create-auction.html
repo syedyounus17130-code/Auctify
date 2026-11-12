@@ -152,10 +152,15 @@
 
                     <label>Start Time</label>
 
-                    <input
-                        type="time"
-                        id="startTime"
-                        required>
+                    <div class="auction-time-input">
+                        <select id="startHour" aria-label="Start hour" required></select>
+                        <span>:</span>
+                        <select id="startMinute" aria-label="Start minute" required></select>
+                        <select id="startPeriod" aria-label="Start AM or PM" required>
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
+                    </div>
 
                 </div>
 
@@ -178,10 +183,15 @@
 
                     <label>End Time</label>
 
-                    <input
-                        type="time"
-                        id="endTime"
-                        required>
+                    <div class="auction-time-input">
+                        <select id="endHour" aria-label="End hour" required></select>
+                        <span>:</span>
+                        <select id="endMinute" aria-label="End minute" required></select>
+                        <select id="endPeriod" aria-label="End AM or PM" required>
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
+                    </div>
 
                 </div>
 
