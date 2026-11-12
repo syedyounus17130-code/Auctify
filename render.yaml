@@ -2,20 +2,13 @@ services:
   - type: web
     name: auctify
     runtime: node
-    # SQLite and uploaded auction images need durable local storage.
-    # Render persistent disks require a paid web service plan.
-    plan: starter
+    # Free plan for a college project/demo. Local SQLite data and uploads are ephemeral.
+    plan: free
     rootDir: server
     buildCommand: npm ci --build-from-source=sqlite3
     startCommand: npm start
     healthCheckPath: /
-    disk:
-      name: auctify-data
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
-      - key: DATA_DIR
-        value: /var/data
       - key: RAZORPAY_KEY_ID
         sync: false
       - key: RAZORPAY_KEY_SECRET
